@@ -1,0 +1,465 @@
+{
+  "version": 1,
+  "canvas": [
+    768,
+    768
+  ],
+  "engine": "See-through NF4",
+  "layers": [
+    {
+      "id": "repair head",
+      "url": "assets/layers/00-repair-head.png",
+      "rect": [
+        0.2578125,
+        0.078125,
+        0.5104166666666666,
+        0.3424479166666667
+      ],
+      "head": 1,
+      "hair": 0,
+      "role": "normal"
+    },
+    {
+      "id": "repair body",
+      "url": "assets/layers/01-repair-body.png",
+      "rect": [
+        0.2786458333333333,
+        0.4231770833333333,
+        0.4466145833333333,
+        0.40234375
+      ],
+      "head": 0,
+      "hair": 0,
+      "role": "normal"
+    },
+    {
+      "id": "footwear-repair",
+      "url": "assets/layers/02-footwear-repair.png",
+      "rect": [
+        0.40234375,
+        0.8255208333333334,
+        0.17708333333333334,
+        0.109375
+      ],
+      "head": 0,
+      "hair": 0,
+      "role": "normal"
+    },
+    {
+      "id": "hat-star-repair",
+      "url": "assets/layers/03-hat-star-repair.png",
+      "rect": [
+        0.7174479166666666,
+        0.22005208333333334,
+        0.037760416666666664,
+        0.041666666666666664
+      ],
+      "head": 1,
+      "hair": 0,
+      "role": "normal"
+    },
+    {
+      "id": "headwear",
+      "url": "assets/layers/04-headwear.png",
+      "rect": [
+        0.2578125,
+        0.07682291666666667,
+        0.5104166666666666,
+        0.32421875
+      ],
+      "head": 1,
+      "hair": 0,
+      "role": "normal"
+    },
+    {
+      "id": "hat-star",
+      "url": "assets/layers/05-hat-star.png",
+      "rect": [
+        0.7174479166666666,
+        0.22005208333333334,
+        0.036458333333333336,
+        0.04296875
+      ],
+      "head": 1,
+      "hair": 0,
+      "role": "normal"
+    },
+    {
+      "id": "legwear-left",
+      "url": "assets/layers/06-legwear-left.png",
+      "rect": [
+        0.4140625,
+        0.63671875,
+        0.07161458333333333,
+        0.22786458333333334
+      ],
+      "head": 0,
+      "hair": 0,
+      "role": "normal"
+    },
+    {
+      "id": "legwear-right",
+      "url": "assets/layers/07-legwear-right.png",
+      "rect": [
+        0.5052083333333334,
+        0.63671875,
+        0.06380208333333333,
+        0.22786458333333334
+      ],
+      "head": 0,
+      "hair": 0,
+      "role": "normal"
+    },
+    {
+      "id": "cape-tail",
+      "url": "assets/layers/08-cape-tail.png",
+      "rect": [
+        0.5963541666666666,
+        0.5104166666666666,
+        0.12890625,
+        0.20182291666666666
+      ],
+      "head": 0,
+      "hair": 0.86,
+      "role": "normal"
+    },
+    {
+      "id": "footwear-left",
+      "url": "assets/layers/09-footwear-left.png",
+      "rect": [
+        0.40234375,
+        0.8229166666666666,
+        0.06640625,
+        0.11197916666666667
+      ],
+      "head": 0,
+      "hair": 0,
+      "role": "normal"
+    },
+    {
+      "id": "footwear-right",
+      "url": "assets/layers/10-footwear-right.png",
+      "rect": [
+        0.51171875,
+        0.82421875,
+        0.06770833333333333,
+        0.11067708333333333
+      ],
+      "head": 0,
+      "hair": 0,
+      "role": "normal"
+    },
+    {
+      "id": "back hair",
+      "url": "assets/layers/11-back-hair.png",
+      "rect": [
+        0.3932291666666667,
+        0.18098958333333334,
+        0.20963541666666666,
+        0.21614583333333334
+      ],
+      "head": 1,
+      "hair": 0.54,
+      "role": "normal"
+    },
+    {
+      "id": "handwear-l",
+      "url": "assets/layers/12-handwear-l.png",
+      "rect": [
+        0.5559895833333334,
+        0.4674479166666667,
+        0.09505208333333333,
+        0.1875
+      ],
+      "head": 0,
+      "hair": 0,
+      "role": "normal"
+    },
+    {
+      "id": "bottomwear",
+      "url": "assets/layers/13-bottomwear.png",
+      "rect": [
+        0.3372395833333333,
+        0.5247395833333334,
+        0.3125,
+        0.1953125
+      ],
+      "head": 0,
+      "hair": 0,
+      "role": "normal"
+    },
+    {
+      "id": "ears-l",
+      "url": "assets/layers/14-ears-l.png",
+      "rect": [
+        0.55859375,
+        0.3151041666666667,
+        0.040364583333333336,
+        0.0546875
+      ],
+      "head": 1,
+      "hair": 0,
+      "role": "normal"
+    },
+    {
+      "id": "topwear",
+      "url": "assets/layers/15-topwear.png",
+      "rect": [
+        0.37109375,
+        0.390625,
+        0.2682291666666667,
+        0.16145833333333334
+      ],
+      "head": 0,
+      "hair": 0,
+      "role": "normal"
+    },
+    {
+      "id": "ears-r",
+      "url": "assets/layers/16-ears-r.png",
+      "rect": [
+        0.4140625,
+        0.3151041666666667,
+        0.037760416666666664,
+        0.0546875
+      ],
+      "head": 1,
+      "hair": 0,
+      "role": "normal"
+    },
+    {
+      "id": "face",
+      "url": "assets/layers/17-face.png",
+      "rect": [
+        0.4231770833333333,
+        0.22265625,
+        0.1640625,
+        0.16536458333333334
+      ],
+      "head": 1,
+      "hair": 0,
+      "role": "normal"
+    },
+    {
+      "id": "mouth",
+      "url": "assets/layers/18-mouth.png",
+      "rect": [
+        0.5,
+        0.36328125,
+        0.009114583333333334,
+        0.005208333333333333
+      ],
+      "head": 1,
+      "hair": 0,
+      "role": "normal"
+    },
+    {
+      "id": "nose",
+      "url": "assets/layers/19-nose.png",
+      "rect": [
+        0.5,
+        0.3463541666666667,
+        0.005208333333333333,
+        0.006510416666666667
+      ],
+      "head": 1,
+      "hair": 0,
+      "role": "normal"
+    },
+    {
+      "id": "eyebrow-l",
+      "url": "assets/layers/20-eyebrow-l.png",
+      "rect": [
+        0.5260416666666666,
+        0.28515625,
+        0.05078125,
+        0.015625
+      ],
+      "head": 1,
+      "hair": 0,
+      "role": "normal"
+    },
+    {
+      "id": "eyebrow-r",
+      "url": "assets/layers/21-eyebrow-r.png",
+      "rect": [
+        0.4309895833333333,
+        0.2864583333333333,
+        0.046875,
+        0.015625
+      ],
+      "head": 1,
+      "hair": 0,
+      "role": "normal"
+    },
+    {
+      "id": "eyewhite-r",
+      "url": "assets/layers/22-eyewhite-r.png",
+      "rect": [
+        0.4361979166666667,
+        0.3255208333333333,
+        0.048177083333333336,
+        0.026041666666666668
+      ],
+      "head": 1,
+      "hair": 0,
+      "role": "eye"
+    },
+    {
+      "id": "eyewhite-l",
+      "url": "assets/layers/23-eyewhite-l.png",
+      "rect": [
+        0.52734375,
+        0.32421875,
+        0.048177083333333336,
+        0.02734375
+      ],
+      "head": 1,
+      "hair": 0,
+      "role": "eye"
+    },
+    {
+      "id": "irides-r",
+      "url": "assets/layers/24-irides-r.png",
+      "rect": [
+        0.4479166666666667,
+        0.3268229166666667,
+        0.032552083333333336,
+        0.024739583333333332
+      ],
+      "head": 1,
+      "hair": 0,
+      "role": "eye"
+    },
+    {
+      "id": "irides-l",
+      "url": "assets/layers/25-irides-l.png",
+      "rect": [
+        0.53125,
+        0.3255208333333333,
+        0.032552083333333336,
+        0.026041666666666668
+      ],
+      "head": 1,
+      "hair": 0,
+      "role": "eye"
+    },
+    {
+      "id": "eyelash-r",
+      "url": "assets/layers/26-eyelash-r.png",
+      "rect": [
+        0.4166666666666667,
+        0.3138020833333333,
+        0.0703125,
+        0.033854166666666664
+      ],
+      "head": 1,
+      "hair": 0,
+      "role": "eye"
+    },
+    {
+      "id": "eyelash-l",
+      "url": "assets/layers/27-eyelash-l.png",
+      "rect": [
+        0.5247395833333334,
+        0.3138020833333333,
+        0.06901041666666667,
+        0.032552083333333336
+      ],
+      "head": 1,
+      "hair": 0,
+      "role": "eye"
+    },
+    {
+      "id": "eyelid-skin",
+      "url": "assets/layers/28-eyelid-skin.png",
+      "rect": [
+        0.41015625,
+        0.3125,
+        0.19010416666666666,
+        0.05078125
+      ],
+      "head": 1,
+      "hair": 0,
+      "role": "lid"
+    },
+    {
+      "id": "closed-eyes",
+      "url": "assets/layers/29-closed-eyes.png",
+      "rect": [
+        0.4166666666666667,
+        0.3268229166666667,
+        0.17838541666666666,
+        0.01953125
+      ],
+      "head": 1,
+      "hair": 0,
+      "role": "lid"
+    },
+    {
+      "id": "mouth-skin",
+      "url": "assets/layers/30-mouth-skin.png",
+      "rect": [
+        0.4921875,
+        0.35546875,
+        0.028645833333333332,
+        0.022135416666666668
+      ],
+      "head": 1,
+      "hair": 0,
+      "role": "mouth-clean"
+    },
+    {
+      "id": "open-mouth",
+      "url": "assets/layers/31-open-mouth.png",
+      "rect": [
+        0.4947916666666667,
+        0.3580729166666667,
+        0.022135416666666668,
+        0.01953125
+      ],
+      "head": 1,
+      "hair": 0,
+      "role": "talk"
+    },
+    {
+      "id": "front hair",
+      "url": "assets/layers/32-front-hair.png",
+      "rect": [
+        0.3489583333333333,
+        0.17838541666666666,
+        0.2955729166666667,
+        0.2421875
+      ],
+      "head": 1,
+      "hair": 0.56,
+      "role": "normal"
+    },
+    {
+      "id": "staff",
+      "url": "assets/layers/33-staff.png",
+      "rect": [
+        0.24088541666666666,
+        0.3020833333333333,
+        0.10026041666666667,
+        0.6315104166666666
+      ],
+      "head": 0,
+      "hair": 0,
+      "role": "normal"
+    },
+    {
+      "id": "handwear-r",
+      "url": "assets/layers/34-handwear-r.png",
+      "rect": [
+        0.2799479166666667,
+        0.4713541666666667,
+        0.15494791666666666,
+        0.10807291666666667
+      ],
+      "head": 0,
+      "hair": 0,
+      "role": "normal"
+    }
+  ]
+}

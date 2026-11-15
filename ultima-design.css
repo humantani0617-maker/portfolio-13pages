@@ -1,0 +1,346 @@
+.design-screen {
+  --design-gap: clamp(12px, 2.1vh, 22px);
+  gap: var(--design-gap);
+  overflow: auto;
+  overscroll-behavior: contain;
+}
+
+.design-heading {
+  flex: none;
+  padding-bottom: clamp(10px, 1.8vh, 18px);
+  border-bottom: 1px solid var(--line);
+}
+
+.design-heading h1 {
+  display: flex;
+  align-items: baseline;
+  flex-wrap: wrap;
+  column-gap: 20px;
+  row-gap: 5px;
+  font-size: clamp(24px, 4.2vh, 42px);
+  line-height: 1.2;
+}
+
+.design-heading h1 span:first-child {
+  color: var(--red);
+  font: 800 .62em/1 var(--display);
+  letter-spacing: .035em;
+}
+
+.design-spread {
+  display: grid;
+  flex: 1;
+  min-height: 0;
+  grid-template-columns: minmax(0, 1.25fr) minmax(0, 1fr);
+  grid-template-rows: auto minmax(130px, 1fr) auto;
+  column-gap: clamp(24px, 3.4vw, 60px);
+  row-gap: var(--design-gap);
+}
+
+.design-story {
+  display: grid;
+  grid-row: 1 / 4;
+  grid-template-rows: subgrid;
+  min-width: 0;
+}
+
+.design-effects {
+  grid-column: 1;
+}
+
+.design-planning {
+  grid-column: 2;
+  position: relative;
+}
+
+.design-planning::before {
+  content: "";
+  position: absolute;
+  inset: 0 auto 0 calc(clamp(24px, 3.4vw, 60px) / -2);
+  border-left: 1px solid var(--line);
+}
+
+.design-story h2 {
+  font-size: clamp(20px, 2.8vh, 30px);
+  line-height: 1.35;
+  font-weight: 900;
+}
+
+.design-story h2 em {
+  color: var(--red);
+}
+
+.design-story p {
+  font-size: clamp(16px, 2.55vh, 24px);
+  line-height: 1.65;
+  text-wrap: pretty;
+}
+
+.design-samples {
+  display: grid;
+  grid-template-columns: minmax(0, 3fr) minmax(90px, 1fr);
+  gap: clamp(8px, 1.25vw, 20px);
+  min-height: 0;
+}
+
+.design-figure {
+  display: grid;
+  grid-template-rows: minmax(0, 1fr) auto;
+  gap: 8px;
+  min-width: 0;
+  min-height: 0;
+  margin: 0;
+}
+
+.design-cut-in,
+.design-model,
+.design-spec {
+  display: block;
+  width: 100%;
+  height: 100%;
+  min-height: 0;
+  border: 1px solid var(--line);
+}
+
+.design-cut-in {
+  object-fit: contain;
+  background: #241f39;
+}
+
+.design-samples.lit .design-cut-in {
+  border-color: #8d9b1e;
+  box-shadow: 0 0 14px #a4b72888;
+}
+
+.design-model,
+.design-spec {
+  position: relative;
+  overflow: hidden;
+  padding: 0;
+}
+
+.design-model {
+  background: radial-gradient(ellipse at 50% 47%, #413a61, #211e34 75%);
+  padding-block: 5px 20px;
+}
+
+.design-model img,
+.design-model canvas,
+.design-spec img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.design-spec {
+  background: #fff;
+}
+
+.design-figure figcaption {
+  color: var(--muted);
+  font-size: clamp(13px, 1.8vh, 16px);
+  line-height: 1.4;
+}
+
+.model-rotate-hint,
+.design-spec-zoom {
+  position: absolute;
+  right: 7px;
+  bottom: 7px;
+  color: var(--paper);
+  background: var(--ink);
+  padding: 3px 7px;
+  font-size: 13px;
+}
+
+.design-model:hover,
+.design-spec:hover {
+  border-color: var(--ink);
+}
+
+#sushi-design .design-heading h1 span:first-child {
+  color: #b74924;
+  font: 800 .52em/1.4 var(--font);
+  letter-spacing: 0;
+}
+
+#kaiju-design .design-heading h1 span:first-child {
+  color: #633f7a;
+  font: 800 .62em/1.4 var(--font);
+  letter-spacing: 0;
+}
+
+.sushi-camera-comparison {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: clamp(8px, 1.25vw, 20px);
+  min-height: 0;
+}
+
+.sushi-camera-comparison .design-figure {
+  grid-template-rows: minmax(0, auto) auto;
+  align-content: center;
+}
+
+.sushi-camera-image {
+  height: auto;
+  aspect-ratio: 16 / 9;
+  background: var(--ink);
+}
+
+.sushi-camera-image img {
+  position: absolute;
+  inset: 0;
+}
+
+.sushi-route-figure {
+  aspect-ratio: 16 / 9;
+  background: var(--ink);
+}
+
+.image-dialog {
+  width: min(1320px, calc(100% - 32px));
+  height: min(860px, calc(100dvh - 32px));
+  max-height: none;
+  overflow: clip;
+  border: 1px solid var(--line);
+  padding: 0;
+  background: var(--paper);
+  color: var(--ink);
+}
+
+.image-dialog[open] {
+  display: flex;
+  flex-direction: column;
+}
+
+.image-dialog > :is(.dialog-toolbar, .dialog-footer),
+.image-dialog .dialog-toolbar > :is(form, button) {
+  flex: none;
+}
+
+:is(#design-spec-dialog, #paged-proposal-dialog)::backdrop {
+  background: #142625cc;
+}
+
+#paged-proposal-dialog .screen-navigation { gap: 12px; }
+#paged-proposal-page { min-width: 5ch; text-align: center; white-space: nowrap; }
+
+.image-dialog-content {
+  position: relative;
+  flex: 1 1 0;
+  display: grid;
+  grid-template: minmax(0, 1fr) / minmax(0, 1fr);
+  min-height: 0;
+  overflow: clip;
+  background: #e2e5dc;
+}
+
+.image-dialog-content img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.image-dialog-steps {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+
+.image-dialog-step {
+  display: flex;
+  align-items: center;
+  padding: clamp(7px, 1.5vw, 18px);
+  border: 0;
+  background: transparent;
+  color: #fff;
+}
+
+.image-dialog-step + .image-dialog-step { justify-content: end; }
+.image-dialog-step[aria-disabled="true"] { cursor: default; }
+
+.image-dialog-step span,
+.image-dialog-step-count {
+  background: #172827e6;
+  color: #fff;
+}
+
+.image-dialog-step span {
+  display: grid;
+  place-items: center;
+  width: clamp(36px, 4.5vw, 50px);
+  aspect-ratio: 1;
+  border: 1px solid #ffffff90;
+  font-size: clamp(19px, 2.3vw, 27px);
+}
+
+.image-dialog-step[aria-disabled="true"] span { opacity: .45; }
+.image-dialog-step[aria-disabled="false"]:is(:hover, :focus-visible) span {
+  background: var(--lime);
+  color: var(--ink);
+}
+
+.image-dialog-step:focus-visible { outline: none; }
+.image-dialog-step:focus-visible span { outline: 2px solid var(--red); outline-offset: 2px; }
+
+.image-dialog-step-count {
+  position: absolute;
+  left: 50%;
+  bottom: 10px;
+  translate: -50% 0;
+  padding: 4px 10px;
+  font-size: 12px;
+  font-variant-numeric: tabular-nums;
+  pointer-events: none;
+}
+
+@media (max-width: 850px) {
+  .design-spread {
+    flex: none;
+    grid-template-columns: 1fr;
+    grid-template-rows: none;
+    row-gap: 20px;
+  }
+
+  .design-story {
+    grid-column: 1;
+    grid-row: auto;
+    grid-template-rows: auto auto auto;
+    gap: 10px;
+  }
+
+  .design-planning {
+    border-top: 1px solid var(--line);
+    padding-top: 16px;
+  }
+
+  .design-planning::before {
+    display: none;
+  }
+
+  .design-samples {
+    height: clamp(132px, 41vw, 285px);
+  }
+
+  .design-spec {
+    aspect-ratio: 1509 / 666;
+  }
+
+  .sushi-route-figure { aspect-ratio: 16 / 9; }
+  #kaiju-design .design-spec { aspect-ratio: 16 / 9; }
+}
+
+@media (max-width: 520px) {
+  .sushi-camera-comparison { grid-template-columns: 1fr; }
+}
+
+@media (min-width: 851px) and (max-height: 475px) {
+  .design-spread {
+    flex: none;
+    grid-template-rows: auto 180px auto;
+  }
+}
