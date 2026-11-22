@@ -223,6 +223,10 @@ pagedProposalDialog.addEventListener('close', () => proposalOpener?.focus());
 // Page-specific play is decorative and never intercepts the video or downloads.
 const effectLayer = document.querySelector('#play-effects');
 const feedback = document.querySelector('#play-feedback');
+function setDartFeedback(result = '') {
+  feedback.dataset.result = result;
+  feedback.textContent = result === 'bull' ? 'BULLSEYE' : result === 'hit' ? 'NICE SHOT' : '';
+}
 const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
 reducedMotion.addEventListener('change', ({ matches }) => {
   if (matches) profileScreen.classList.remove('profile-zone-entering');
@@ -237,8 +241,14 @@ const dartSoundFiles = {
   bullAnnouncement: 'assets/darts/SE_Announce_Bull.wav'
 };
 const commonSushiPlates = ['ebi', 'kappa', 'maguro', 'tamago'];
-const uniPlateChance = 1 / 15;
+const uniPlateChance = 1 / 20;
 const uniMissCount = document.querySelector('#uni-miss-count');
+document.getElementById('sushi-order-button').addEventListener('click', event => {
+  const bounds = event.currentTarget.getBoundingClientRect();
+  const x = event.detail ? event.clientX : bounds.left + bounds.width / 2;
+  const y = event.detail ? event.clientY : bounds.top + bounds.height / 2;
+  showSushiPlate(x, y);
+});
 let consecutiveUniMisses = 0;
 const kaijuCharge = document.querySelector('.kaiju-charge');
 const kaijuChargeFill = kaijuCharge.querySelector('.kaiju-charge-track span');
@@ -269,8 +279,7 @@ function clearPlayEffects() {
   stopEffectSounds();
   animations.forEach(a => a.cancel()); animations.clear();
   effectTimers.forEach(t => clearTimeout(t)); effectTimers.clear();
-  effectLayer.replaceChildren(); feedback.textContent = '';
-  document.querySelector('#dart-target').classList.remove('bullseye');
+  effectLayer.replaceChildren(); setDartFeedback();
   document.querySelector('#design-samples').classList.remove('lit');
 }
 function readyAudio(resume = true) {
@@ -554,22 +563,17 @@ function throwDart(x, y) {
   dart.style.transform = flightPose(0, .55);
   const impact = () => {
     if (version !== sceneVersion) return;
-    const mark = document.createElement('span'); mark.className = 'impact-ring';
-    mark.style.left = x + 'px'; mark.style.top = y + 'px'; effectLayer.appendChild(mark);
     if (hit) {
-      if (bull) {
-        target.classList.remove('bullseye'); void target.offsetWidth; target.classList.add('bullseye');
-      }
-      feedback.textContent = bull ? 'BULLSEYE!' : 'NICE SHOT!';
+      setDartFeedback(bull ? 'bull' : 'hit');
       if (bull) {
         playEffectSound(dartSoundBuffers?.bull, version, audioReady, .22);
         playEffectSound(dartSoundBuffers?.bullAnnouncement, version, audioReady, .88);
       } else {
         playEffectSound(dartSoundBuffers?.hit, version, audioReady);
       }
-      later(() => {feedback.textContent = ''; target.classList.remove('bullseye');}, 2200);
+      later(() => setDartFeedback(), 2200);
     }
-    later(() => {dart.remove(); mark.remove();}, 650);
+    later(() => dart.remove(), 650);
   };
   if (reducedMotion.matches) impact();
   else {

@@ -43,7 +43,7 @@ main{flex:1;min-height:0;position:relative}
 }
 .project-screen .overview h2 { grid-area: heading; }
 .project-screen .overview p { grid-area: description; }
-.overview .dart-target {
+.overview .dart-target-anchor {
   grid-area: target;
   align-self: center;
   width: clamp(104px, min(14vw, 25vh), 232px);
@@ -377,7 +377,7 @@ main{flex:1;min-height:0;position:relative}
 
 @media (721px <= width <= 1500px) {
   #ultima .overview { grid-template-areas: "heading target" "description description"; }
-  #ultima .overview .dart-target { width: clamp(88px, min(11vw, 14vh), 130px); }
+  #ultima .overview .dart-target-anchor { width: clamp(88px, min(11vw, 14vh), 130px); }
   #ultima .overview h2 { margin-bottom: 8px; }
   #ultima .overview p { line-height: 1.6; }
   #ultima .role-block { margin-top: 14px; padding-top: 8px; }
@@ -609,7 +609,7 @@ main{flex:1;min-height:0;position:relative}
  #sushi .overview h2 { font-size: 22px; }
  #sushi .overview h2 br { display: initial; }
  .project-award { font-size: clamp(12px, 3.1vw, 17px); }
- .overview .dart-target { width: clamp(60px, 20vw, 104px); }
+ .overview .dart-target-anchor { width: clamp(60px, 20vw, 104px); }
  .cabinet{height:calc(100dvh - 12px);margin:6px auto;width:calc(100% - 12px);padding:0 14px}
  .site-header{flex-basis:48px;gap:8px}.header-right{gap:5px}.header-right .sound-toggle{min-width:70px;font-size:9px;min-height:30px;padding:6px}
  .header-right .index-button{padding:6px 8px}.brand{font-size:12px;gap:6px}.brand small{font-size:6px;letter-spacing:.5px}.brand-mark{width:27px;height:27px}
@@ -626,3 +626,58 @@ main{flex:1;min-height:0;position:relative}
  .work-name small{font-size:8px;letter-spacing:.7px}.work-name h2{font-size:17px}.featured .work-name h2{font-size:23px}.work-name p{font-size:8px;margin-top:5px}.card-bottom{font-size:8px;margin-top:7px}.featured .card-bottom{font-size:9px}.symbol{font-size:34px;right:10px;bottom:35px;opacity:.5}.darts-art{opacity:.35;right:-10px;top:25px;scale:.6;transform-origin:top right}.slot-symbol{font-size:26px}
 
 }
+
+/* Local review: place the aim hint and result without moving the dartboard. */
+#ultima .dart-target-anchor { position: relative; isolation: isolate; }
+#ultima .dart-target-anchor .dart-target { display: block; width: 100%; height: 100%; transform: none; }
+#ultima .dart-aim-guide { position: absolute; z-index: 1; top: -96px; right: calc(100% - 9px);
+  color: var(--ink); font-size: clamp(18px, 2.7vh, 27px); line-height: 1.2; font-weight: 900;
+  white-space: nowrap; pointer-events: none; }
+#ultima #play-feedback { position: absolute; z-index: 2; top: calc(100% + 8px); bottom: auto;
+  left: 50%; transform: translateX(-50%); width: max-content; max-width: 108%; white-space: nowrap;
+  font: 900 italic clamp(17px, 2.7vh, 28px)/1.1 var(--display); text-align: center; padding: 5px 10px;
+  box-shadow: 3px 3px 0 var(--ink); overflow: hidden; pointer-events: none; }
+@media (max-width: 1500px) {
+  #ultima .dart-aim-guide { top: -34px; right: 5%; font-size: clamp(13px, 1.6vw, 19px); }
+  #ultima #play-feedback { top: calc(100% + 4px); font-size: clamp(12px, 1.35vw, 18px); padding: 4px 6px; }
+}
+@media (max-width: 720px) {
+  #ultima .dart-aim-guide { top: -26px; right: 0; font-size: 12px; }
+}
+
+@media (721px <= width <= 980px) {
+  #ultima .overview p::before { content: ""; float: inline-end; width: 94px; height: 28px; margin-inline-start: 8px; }
+}
+
+/* Local review: unboxed Sushi control just above its meter. */
+#sushi .sushi-order-group { position:relative; left:-22px; }
+#sushi .sushi-order-button { position:absolute; bottom:calc(100% + 4px); left:50%; transform:translateX(-50%);
+  padding:1px 0; background:transparent; color:#8c3f23; border:0; box-shadow:none;
+  font-size:clamp(12px,1.1vw,17px); font-weight:900; line-height:1.25; white-space:nowrap; }
+#sushi .sushi-order-button:hover { text-decoration:underline; text-underline-offset:3px; }
+#sushi .sushi-order-button:focus-visible { outline:2px solid #8c3f23; outline-offset:3px; }
+@media(min-width:1501px) {#sushi .sushi-order-group {left:-26px;}}
+@media(max-width:920px) {#sushi .sushi-order-group {left:-10px;}}
+@media(max-width:720px) {#sushi .sushi-heading-stats {margin-top:22px;} #sushi .sushi-order-group {left:-5px;}}
+
+/* Show one plain frame, aligned to the opaque rim of dartboard-large.png. */
+#ultima .dart-aim-guide { top:auto; right:auto; bottom:calc(100% + 8px); left:50%; transform:translateX(-50%);
+  margin:0; color:#211b30; font-size:clamp(13px,2.35vh,19px); font-weight:900; letter-spacing:.02em; line-height:1.2; }
+#ultima #play-feedback, #ultima #play-feedback:empty { display:grid; place-items:center; left:2.7113%; transform:none;
+  width:94.3381%; max-width:none; height:clamp(20px,4.1vh,30px); border:0; outline:0; padding:0;
+  background:transparent url("assets/darts/result-frame-static.svg") center/100% 100% no-repeat; color:#fff; font:700 clamp(12px,2.2vh,17px)/1 system-ui,sans-serif;
+  letter-spacing:.025em; box-shadow:none; box-sizing:border-box; }
+@media(max-width:1500px) {
+ #ultima .dart-aim-guide {bottom:calc(100% + 5px); font-size:clamp(12px,1.4vw,16px);}
+ #ultima #play-feedback, #ultima #play-feedback:empty {height:24px;font-size:clamp(10px,1.05vw,14px);}
+}
+@media (721px <= width <= 980px) {#ultima .overview p::before {width:105px;}}
+@media(max-width:720px) {
+ #ultima .dart-aim-guide {bottom:calc(100% + 4px);font-size:12px;}
+ #ultima #play-feedback, #ultima #play-feedback:empty {height:21px;font-size:10px;letter-spacing:0;}
+}
+
+/* Local review: label above the gauge without changing its dimensions. */
+#kaiju .kaiju-charge { position: relative; }
+#kaiju .kaiju-charge-guide { position: absolute; left: 50%; width: max-content; transform: translateX(-50%); bottom: calc(100% + 5px); color: #633f7a; text-align: center; font-size: clamp(10px, min(1.85vh, 1.08vw), 15px); font-weight: 800; line-height: 1.2; white-space: nowrap; pointer-events: none; }
+@media (max-width: 720px) { #kaiju .kaiju-charge-guide { font-size: clamp(8px, 2.2vw, 11px); bottom: calc(100% + 3px); } }
