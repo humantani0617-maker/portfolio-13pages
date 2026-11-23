@@ -5,17 +5,13 @@ const work = document.querySelector('.web-work-motion');
 const page = work.closest('.screen');
 const canvas = work.querySelector('canvas');
 const poster = work.querySelector('img');
-const form = work.querySelector('form');
-const line = form.querySelector('textarea');
-const speak = form.querySelector('[type="submit"]');
-const greeting = form.querySelector('.crescent-greeting');
+const greeting = work.querySelector('.crescent-greeting');
 const caption = work.querySelector('[role="status"]');
 const song = document.querySelector('#pale-blue-rain');
 const soundToggle = document.querySelector('.sound-toggle');
 const audio = new URL('./greeting.wav', import.meta.url).href;
 const score = new URL('./greeting.score.json', import.meta.url).href;
 const muted = () => soundToggle.getAttribute('aria-pressed') === 'false';
-const voiceApi = path => new URL('../../crescent-voice' + path, import.meta.url);
 const isVisible = () => !page.hidden && !document.hidden;
 
 let studio;
@@ -36,23 +32,14 @@ const player = new VoicePlayer(playing => {
 });
 
 function refreshButtons() {
-  const current = operation?.button;
-  speak.disabled = current === greeting;
-  greeting.disabled = current === speak;
-  speak.textContent = current !== speak ? 'このセリフを話す'
-    : operation.phase === 'playing' ? '再生を止める' : '生成を取り消す';
-  greeting.textContent = current !== greeting ? '挨拶を聞く'
+  greeting.disabled = false;
+  greeting.textContent = !operation ? '挨拶を聞く'
     : operation.phase === 'playing' ? '挨拶を止める' : '読み込みを取り消す';
-}
-
-function cancelJob(id) {
-  if (id) void fetch(voiceApi('/api/jobs/' + id), {method: 'DELETE', keepalive: true}).catch(() => {});
 }
 
 function stop() {
   const previous = operation;
   operation = null;
-  cancelJob(previous?.id);
   if (player.playing) player.stop();
   if (studio) studio.mouth = 0;
   if (previous) caption.textContent = '';
@@ -101,67 +88,24 @@ async function start() {
   }
 }
 
-async function requestJson(path, options) {
-  let response;
-  try { response = await fetch(voiceApi(path), options); }
-  catch { throw new Error('音声スタジオに接続できません。'); }
-  const data = await response.json().catch(() => null);
-  if (!response.ok || !data) {
-    throw new Error(data?.error || '自由入力は、このPCのポートフォリオを起動してお試しください。');
-  }
-  return data;
-}
-
-async function generate(text, current) {
-  const result = await requestJson('/api/speech', {
-    method: 'POST',
-    headers: {'Content-Type': 'application/json'},
-    body: JSON.stringify({text}),
-  });
-  current.id = result.id;
-  if (operation !== current) {
-    cancelJob(result.id);
-    return null;
-  }
-  const deadline = performance.now() + 180000;
-  while (operation === current && performance.now() < deadline) {
-    const job = await requestJson('/api/jobs/' + current.id);
-    if (operation !== current) return null;
-    if (job.status === 'ready') {
-      current.id = undefined;
-      return player.load({audio: voiceApi(job.audio), score: voiceApi(job.score)});
-    }
-    if (job.status === 'error' || job.status === 'cancelled') throw new Error(job.message);
-    caption.textContent = job.message;
-    await new Promise(resolve => setTimeout(resolve, 750));
-  }
-  if (operation === current) throw new Error('生成に時間がかかっています。短いセリフでもう一度お試しください。');
-  return null;
-}
-
-async function play(button, text) {
+async function playGreeting() {
   if (operation) {
-    if (operation.button === button) stop();
+    stop();
     return;
   }
   if (muted()) {
     caption.textContent = '再生するには、右上のサウンドをオンにしてください。';
     return;
   }
-  if (button === speak && !text) {
-    caption.textContent = '話してほしいセリフを入力してください。';
-    line.focus();
-    return;
-  }
-  const current = {button, phase: 'loading'};
+  const current = {phase: 'loading'};
   operation = current;
   refreshButtons();
-  caption.textContent = text ? '音声スタジオに接続中…' : '挨拶を読み込み中…';
+  caption.textContent = '挨拶を読み込み中…';
   try {
     await player.unlock();
     if (operation !== current) return;
-    if (!text) sample ??= await player.load({audio, score});
-    const speech = text ? await generate(text, current) : sample;
+    sample ??= await player.load({audio, score});
+    const speech = sample;
     if (!speech || operation !== current || !isVisible() || muted()) return;
     transcript = speech.score.characters.map(character => character.text).join('');
     song.pause();
@@ -174,18 +118,13 @@ async function play(button, text) {
     if (operation === current) caption.textContent = error.message || '再生できませんでした。もう一度お試しください。';
   } finally {
     if (operation === current && current.phase === 'loading') {
-      cancelJob(current.id);
       operation = null;
       refreshButtons();
     }
   }
 }
 
-form.addEventListener('submit', event => {
-  event.preventDefault();
-  void play(speak, line.value.trim());
-});
-greeting.addEventListener('click', () => void play(greeting));
+greeting.addEventListener('click', () => void playGreeting());
 
 song.addEventListener('play', stop);
 new MutationObserver(() => { if (muted()) stop(); })
