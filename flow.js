@@ -1,5 +1,5 @@
 // Navigate straight to the content page, without a selection dialog.
-const chapterRoutes = {profile:'intro-profile',games:'ultima',documents:'documents',other:'other',contents:'contents'};
+const chapterRoutes = {profile:'profile',games:'ultima',documents:'documents',other:'other',contents:'contents'};
 document.addEventListener('click', e => {
   if (e.target.closest('[data-go]')) return;
   const route = e.target.closest('[data-chapter]');

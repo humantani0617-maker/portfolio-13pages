@@ -1,0 +1,797 @@
+#favorite-effects {overflow:auto;scrollbar-gutter:stable}
+.effects-grid {display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:clamp(10px,1.6vw,24px)}
+.effects-card {min-width:0;padding:clamp(12px,1.6vw,24px);border:1px solid #cbbfbc;border-top:3px solid #895664;background:#f9f3ed;color:var(--ink)}
+.effects-machine {font-weight:700;font-size:clamp(12px,1.05vw,15px);line-height:1.4;margin:0 0 .3rem;min-height:2.8em}
+.effects-card h2 {font-size:clamp(17px,1.7vw,26px);line-height:1.3;margin:0 0 .8rem;min-height:2.2em}
+.effects-media {display:block;position:relative;padding:0;width:100%;margin:0;background:#0e0b12;border:1px solid #473340;aspect-ratio:16/9;overflow:hidden;cursor:pointer}
+.effects-media video {display:block;width:100%;height:100%;object-fit:contain;pointer-events:none}
+.effects-play {position:absolute;inset:auto 8px 8px auto;display:grid;place-items:center;width:35px;height:35px;border-radius:50%;background:#251929dc;color:white;font-size:14px;pointer-events:none}
+.effects-media[aria-pressed=true] .effects-play {display:none}
+.effects-media:focus-visible,.effects-hobby-link:focus-visible {outline:3px solid #81435c;outline-offset:3px}
+.effects-reason {margin:.85rem 0 0;font-size:clamp(13px,1.05vw,16px);line-height:1.55}
+.effects-hobby-link {padding:.45em .7em;border:1px solid #895664;background:#f9f3ed;color:#56323f}
+@media(max-width:720px) {.effects-grid {grid-template-columns:minmax(0,1fr)} .effects-machine,.effects-card h2 {min-height:0}}
+
+/* Shared compact header: keep JS navigation hooks and expose only the sound control. */
+.cabinet > .site-header { min-height:0; flex:0 0 clamp(35px,6vh,43px); justify-content:flex-end; gap:0; border-bottom-color:transparent; }
+.cabinet > .site-header .brand,.cabinet > .site-header .index-button {display:none}
+.cabinet > .site-header .sound-toggle {min-height:29px;padding-block:4px}
+#favorite-effects {padding-block:clamp(8px,1.8vh,16px);scrollbar-gutter:auto}
+#favorite-effects .route-page-heading {margin-bottom:clamp(9px,1.6vh,14px)}
+.effects-card {padding:clamp(9px,1.35vw,20px)}
+.effects-machine {min-height:2.8em;margin-bottom:3px}
+.effects-card h2 {margin-bottom:8px}
+.effects-media {width:min(100%,calc(100dvh * .59));margin-inline:auto}
+.effects-reason {margin-top:.55rem}
+@media(max-width:720px) {
+ .effects-grid {grid-template-columns:minmax(0,1fr);gap:7px}
+ .effects-card {display:grid;grid-template-columns:minmax(83px, .9fr) minmax(0,1.5fr);column-gap:10px;row-gap:2px;padding:7px}
+ .effects-machine,.effects-card h2 {grid-column:1 / -1;min-height:0;margin:0}
+ .effects-card h2 {font-size:clamp(15px,4.15vw,20px);margin-bottom:2px}
+ .effects-media {align-self:start;width:100%}
+ .effects-reason {margin:0;font-size:clamp(11px,3vw,14px);line-height:1.45}
+ .effects-play {width:23px;height:23px;inset:auto 4px 4px auto;font-size:10px}
+}
+
+@media(max-width:405px) and (max-height:690px) {
+ #favorite-effects .route-page-heading {margin-bottom:6px}
+ #favorite-effects .route-page-heading h1 {font-size:clamp(23px,6.35vw,28px)}
+ .effects-grid {gap:5px}
+ .effects-card {padding:6px;grid-template-columns:minmax(70px,.72fr) minmax(0,1.65fr);column-gap:7px}
+ .effects-machine {font-size:11px}
+ .effects-reason {line-height:1.35}
+}
+
+@media(max-height:670px) and (min-width:721px) { #favorite-effects .effects-machine {min-height:2.45em} #favorite-effects .effects-card h2 {min-height:1.8em} }
+
+@media(min-width:721px) { #favorite-effects .effects-card h2 {margin-bottom:3px} #favorite-effects .effects-reason {margin-top:.37rem} }
+
+@media (max-width:720px), (max-height:680px) { #favorite-effects .effects-sentence-break {display:none} }
+
+/* Private unified page 03: retain the original motto/identity column. */
+#profile[data-profile-unified] .unified-profile-details {display:flex;flex-direction:column;justify-content:center;gap:clamp(8px,2vh,18px);min-height:0}
+#profile[data-profile-unified] .profile-strengths {margin:0}
+#profile[data-profile-unified] .profile-strengths > li {padding-block:clamp(4px,1.2vh,9px)}
+#profile[data-profile-unified] .profile-strengths h2 {margin-bottom:4px}
+#profile[data-profile-unified] .profile-skills {margin:0}
+#profile[data-profile-unified] .profile-skills ul {flex-wrap:wrap;overflow:visible}
+#profile[data-profile-unified] .profile-qualification {margin-top:.55em;font-weight:700}
+@media (max-width:760px) {
+ #profile[data-profile-unified] .unified-profile-details {gap:6px}
+ #profile[data-profile-unified] .profile-strengths p {font-size:clamp(11px,3.15vw,14px);line-height:1.42}
+ #profile[data-profile-unified] .profile-strengths h2 {margin-bottom:2px}
+ #profile[data-profile-unified] .profile-qualification {font-size:12px}
+}
+
+@media(max-width:760px) and (max-height:690px) {
+ #profile[data-profile-unified] .profile-identity {position:relative;padding-top:8px}
+ #profile[data-profile-unified] .profile-name-row {position:static}
+ #profile[data-profile-unified] .profile-character-icon {position:absolute;top:7px;right:9px;width:58px}
+ #profile[data-profile-unified] .profile-school {padding-right:62px}
+ #profile[data-profile-unified] .profile-motto p {display:flex;gap:.8em;justify-content:center}
+ #profile[data-profile-unified] .profile-motto p span {white-space:nowrap}
+ #profile[data-profile-unified] .profile-strengths p {margin-top:.1em}
+}
+
+@media(max-width:760px) and (max-height:690px) { #profile[data-profile-unified] .unified-profile-details {gap:4px} #profile[data-profile-unified] .profile-strengths > li {padding-block:4px} #profile[data-profile-unified] .profile-zone-content {padding-top:0} #profile[data-profile-unified] .route-page-heading {padding-bottom:3px;margin-bottom:5px} }
+
+#profile[data-profile-unified] .profile-qualification {font-size:23px;line-height:1.3}
+@media(max-width:760px){#profile[data-profile-unified] .profile-qualification {font-size:15px}}
+
+@media(max-width:760px) and (max-height:690px) { #profile[data-profile-unified]{padding-bottom:2px} #profile[data-profile-unified] .profile-zone-content{padding-bottom:0} #profile[data-profile-unified] .profile-strengths > li{padding-block:3px} }
+
+/* Private page 04 only */
+#hobbies[data-rankings-page] .p4-layout {display:grid;grid-template-columns:minmax(0,1.34fr) minmax(0,1fr);gap:clamp(12px,2.4vw,37px);align-items:start}
+#hobbies[data-rankings-page] .p4-panel {min-width:0;border:1px solid var(--line);border-top:4px solid var(--chapter-color);padding:clamp(9px,1.2vw,18px);background:#f1f0e9}
+#hobbies[data-rankings-page] .p4-panel h2 {font-size:clamp(17px,1.9vw,29px);color:var(--chapter-color);margin:0 0 7px;line-height:1.22}
+#hobbies[data-rankings-page] .p4-list {list-style:none;margin:0;padding:0}
+#hobbies[data-rankings-page] .p4-list li {display:grid;grid-template-columns:minmax(0,1fr) auto;align-items:center;gap:8px;border-top:1px solid var(--line);padding-block:clamp(3px,.85vh,7px)}
+#hobbies[data-rankings-page] .p4-list h3,#hobbies[data-rankings-page] .p4-strength h3 {font-size:clamp(14px,1.25vw,19px);line-height:1.28;margin:0 0 2px}
+#hobbies[data-rankings-page] .p4-list p {font-size:clamp(12px,1.05vw,16px);line-height:1.34}
+#hobbies[data-rankings-page] .p4-rank-note {white-space:nowrap;color:var(--muted);font-size:.85em}
+#hobbies[data-rankings-page] .p4-evidence {display:flex;align-items:center;gap:4px}
+#hobbies[data-rankings-page] .p4-evidence a {color:var(--ink);font-size:clamp(11px,.95vw,14px);text-decoration:underline;text-underline-offset:2px;text-align:right}
+#hobbies[data-rankings-page] .p4-proof {padding:0;display:grid;place-items:center;width:clamp(49px,6vw,89px);height:clamp(36px,7.6vh,58px);background:#172124;border:1px solid var(--line);cursor:zoom-in}
+#hobbies[data-rankings-page] .p4-proof img {display:block;width:100%;height:100%;min-height:0;object-fit:contain}
+#hobbies[data-rankings-page] .p4-strength h3 {margin:12px 0 7px}
+#hobbies[data-rankings-page] .p4-strength p {font-size:clamp(13px,1.16vw,18px);line-height:1.65}
+@media(max-width:760px) {
+ #hobbies[data-rankings-page] .p4-layout {grid-template-columns:minmax(0,1fr);gap:7px}
+ #hobbies[data-rankings-page] .p4-panel {padding:6px 8px}
+ #hobbies[data-rankings-page] .p4-panel h2 {font-size:17px;margin-bottom:4px}
+ #hobbies[data-rankings-page] .p4-proof {width:49px;height:34px}
+ #hobbies[data-rankings-page] .p4-list li {gap:5px;padding-block:3px}
+ #hobbies[data-rankings-page] .p4-strength h3 {margin:6px 0 3px}
+ #hobbies[data-rankings-page] .p4-strength p {line-height:1.45}
+}
+
+/* Private page 04: score and supporting document */
+#hobbies[data-rankings-page] .p4-wais-scores{display:grid;grid-template-columns:minmax(0,.82fr) minmax(0,1.18fr);gap:8px;margin:12px 0}
+#hobbies[data-rankings-page] .p4-wais-scores div{display:flex;align-items:center;justify-content:space-between;gap:6px;padding:7px 9px;border:1px solid var(--line);background:#fffefa}
+#hobbies[data-rankings-page] .p4-wais-scores dt{font-size:clamp(11px,1vw,15px);font-weight:700}
+#hobbies[data-rankings-page] .p4-wais-scores dd{margin:0;color:var(--chapter-color);font-weight:800;font-size:clamp(17px,2vw,31px);line-height:1}
+#hobbies[data-rankings-page] .p4-wais{margin:12px 0 0}
+#hobbies[data-rankings-page] .p4-wais figcaption{margin-bottom:4px;color:var(--muted);font-size:clamp(11px,.97vw,14px)}
+#hobbies[data-rankings-page] .p4-wais-image{display:block;padding:0;border:1px solid var(--line);width:min(100%,315px);background:#eee7d8;cursor:zoom-in}
+#hobbies[data-rankings-page] .p4-wais-image img{display:block;width:100%;height:auto}
+@media(max-width:760px){
+ #hobbies[data-rankings-page] .p4-wais-scores{gap:5px;margin:5px 0}
+ #hobbies[data-rankings-page] .p4-wais-scores div{padding:3px 5px}
+ #hobbies[data-rankings-page] .p4-strength .p4-strength-example{font-size:12px;line-height:1.35}
+ #hobbies[data-rankings-page] .p4-wais{margin:5px 0 0;display:flex;align-items:center;gap:5px}
+ #hobbies[data-rankings-page] .p4-wais figcaption{margin:0}
+ #hobbies[data-rankings-page] .p4-wais-image{width:min(45%,153px);flex:none}
+}
+
+@media(max-width:760px) and (max-height:690px){
+ #hobbies[data-rankings-page] .p4-strength{padding-block:4px}
+ #hobbies[data-rankings-page] .p4-wais-image{width:min(38%,116px)}
+ #hobbies[data-rankings-page] .p4-wais-scores{margin-block:3px}
+ #hobbies[data-rankings-page] .p4-wais{margin-top:3px}
+}
+
+/* Private p04: distribute evidence across the available slide */
+#hobbies[data-rankings-page] .p4-list h3{font-size:clamp(15px,1.52vw,24px)}
+#hobbies[data-rankings-page] .p4-rank-value{font-size:1.17em;font-weight:800;color:var(--chapter-color);white-space:nowrap}
+#hobbies[data-rankings-page] .p4-wais-scores{grid-template-columns:minmax(0,1fr) minmax(0,1.35fr)}
+#hobbies[data-rankings-page] .p4-wais-scores div{justify-content:center;column-gap:clamp(4px,.62vw,10px)}
+@media(min-width:761px){
+ #hobbies[data-rankings-page] .p4-layout{align-items:stretch;min-height:calc(74vh - 24px)}
+ #hobbies[data-rankings-page] .p4-rankings{display:flex;flex-direction:column}
+ #hobbies[data-rankings-page] .p4-list{display:grid;grid-template-rows:repeat(5,minmax(min-content,1fr));flex:1}
+ #hobbies[data-rankings-page] .p4-strength{display:flex;flex-direction:column}
+ #hobbies[data-rankings-page] .p4-wais{margin:auto 0 0;padding-top:10px}
+ #hobbies[data-rankings-page] .p4-wais-image{width:min(100%,clamp(303px,34vw,485px),59vh)}
+}
+@media(min-width:761px) and (max-height:570px){#hobbies[data-rankings-page] .p4-wais-image{width:min(100%,54vh)}}
+@media(max-width:760px){
+ #hobbies[data-rankings-page] .p4-rank-value{font-size:1.13em}
+ #hobbies[data-rankings-page] .p4-wais-image{width:min(42%,140px)}
+}
+@media(max-width:760px) and (max-height:690px){
+ #hobbies[data-rankings-page] .p4-list h3{line-height:1.15}
+ #hobbies[data-rankings-page] .p4-wais-image{width:min(35%,102px)}
+}
+
+@media(max-width:760px) and (max-height:690px){
+ #hobbies[data-rankings-page] .p4-list li{padding-block:2px}
+ #hobbies[data-rankings-page] .p4-layout{gap:5px}
+}
+
+/* Private p04: same paper, ink and fine rules as the project pages */
+#hobbies[data-rankings-page] {--chapter-color:var(--ink)}
+#hobbies[data-rankings-page] .route-page-heading{border-bottom-color:var(--line)}
+#hobbies[data-rankings-page] .p4-panel{background:var(--paper);border-color:var(--line);border-top-color:var(--ink)}
+#hobbies[data-rankings-page] .p4-panel h2,
+#hobbies[data-rankings-page] .p4-rank-value,
+#hobbies[data-rankings-page] .p4-wais-scores dd{color:var(--ink)}
+#hobbies[data-rankings-page] .p4-wais-scores div,
+#hobbies[data-rankings-page] .p4-wais-image{background:var(--paper);border-color:var(--line)}
+#hobbies[data-rankings-page] .p4-proof{background:var(--ink)}
+
+/* Private p04: remove only the two marked connecting decorations */
+.cabinet:has(#hobbies[data-rankings-page]:not([hidden]))::before{display:none}
+#hobbies[data-rankings-page] .route-page-heading{border-bottom-color:transparent}
+#hobbies[data-rankings-page] .p4-rankings h2{font-size:clamp(14px,1.78vw,27px)}
+#hobbies[data-rankings-page] .p4-rankings h2 span{white-space:nowrap}
+@media(max-width:760px){#hobbies[data-rankings-page] .p4-rankings h2{font-size:clamp(13px,3.85vw,17px)}}
+
+/* Private p04: one project-page accent, with a clear h1 hierarchy */
+#hobbies[data-rankings-page]{--p4-accent:#b74924;--p4-tint:color-mix(in srgb,var(--p4-accent) 7%,var(--paper));--p4-tint-strong:color-mix(in srgb,var(--p4-accent) 13%,var(--paper))}
+#hobbies[data-rankings-page] .route-page-heading h1{font-size:clamp(35px,6.4vh,52px);font-weight:900;line-height:1.10;letter-spacing:-.035em;color:var(--p4-accent)}
+#hobbies[data-rankings-page] .p4-panel{border-top-color:var(--p4-accent);background:linear-gradient(180deg,var(--p4-tint),var(--paper) 108px)}
+#hobbies[data-rankings-page] .p4-panel h2{color:var(--ink)}
+#hobbies[data-rankings-page] .p4-rank-value,#hobbies[data-rankings-page] .p4-wais-scores dd{color:var(--p4-accent)}
+#hobbies[data-rankings-page] .p4-wais-scores div{background:var(--p4-tint-strong);border-color:color-mix(in srgb,var(--p4-accent) 28%,var(--line))}
+@media(min-width:761px){#hobbies[data-rankings-page] .p4-layout{min-height:calc(74vh - 38px)}}
+@media(max-width:760px){#hobbies[data-rankings-page] .route-page-heading h1{font-size:clamp(33px,9vw,40px)}}
+@media(max-width:760px) and (max-height:690px){#hobbies[data-rankings-page] .route-page-heading{padding-bottom:10px}}
+
+/* Private p04: mirror Peracon's ink headline and purple/lime result badge */
+#hobbies[data-rankings-page]{--p4-accent:var(--flow-purple);--p4-tint:color-mix(in srgb,var(--p4-accent) 5%,var(--paper))}
+#hobbies[data-rankings-page] .route-page-heading h1{color:var(--ink)}
+#hobbies[data-rankings-page] .p4-panel{background:linear-gradient(180deg,var(--p4-tint),var(--paper) 108px)}
+#hobbies[data-rankings-page] .p4-wais-scores{background:var(--p4-accent);gap:0}
+#hobbies[data-rankings-page] .p4-wais-scores div{background:transparent;border-color:transparent;color:#fff}
+#hobbies[data-rankings-page] .p4-wais-scores div+div{border-inline-start-color:#ffffff55}
+#hobbies[data-rankings-page] .p4-wais-scores dd{color:var(--lime)}
+
+#hobbies[data-rankings-page] .p4-rankings h2 .p4-focus-game{color:#a84312;font-size:1.29em;line-height:1}
+
+@media(max-width:375px){#hobbies[data-rankings-page] .p4-rankings h2{letter-spacing:-.04em}}
+@media(max-width:375px) and (max-height:690px){#hobbies[data-rankings-page] .p4-wais-image{width:min(31%,77px)}#hobbies[data-rankings-page] .p4-wais{margin-top:2px}}
+/* Private sequence: normal profile, optional travel, and a one-slide entrance */
+body:has(#profile[data-profile-unified]:not([hidden])){--paper:#f1f1e9;--ink:#172827;--line:#c8cec3;--lime:#dcf260}
+#profile[data-profile-unified]{--chapter-color:var(--ink)}
+#profile[data-profile-unified] .profile-identity{background:#e6ebdf}
+#hobbies[data-rankings-page]{position:relative;--profile-entrance-duration:1200ms}
+#hobbies[data-rankings-page].profile-zone-entering{--chapter-color:var(--flow-purple)}
+@media(prefers-reduced-motion:no-preference){#hobbies.profile-zone-entering .p4-layout{animation:profile-content-enter var(--profile-entrance-duration) both}}
+#favorite-effects .route-page-heading{display:flex;align-items:center;justify-content:space-between;gap:6px}
+#favorite-effects .effects-travel-open,#effects-travel-dialog button{border:1px solid var(--line);background:var(--paper);color:var(--ink);font:700 clamp(11px,1vw,15px)/1.25 var(--font);padding:.45em .65em;cursor:pointer;flex:none;white-space:nowrap}
+#effects-travel-dialog{width:min(94vw,760px);max-height:92dvh;overflow:auto;padding:12px;color:var(--ink);background:var(--paper);border:1px solid var(--ink)}
+#effects-travel-dialog::backdrop{background:#121c1b9c}
+#effects-travel-dialog header{display:flex;align-items:center;justify-content:space-between;gap:8px}
+#effects-travel-dialog .hobby-map-frame{height:min(65dvh,470px);min-height:180px}
+@media(max-width:760px){#favorite-effects .effects-travel-open{font-size:10px;padding:.4em}}
+
+@media(max-width:720px){
+ #favorite-effects .route-page-heading{display:block;position:relative;padding-bottom:24px;margin-bottom:4px}
+ #favorite-effects .route-page-heading .effects-travel-open{position:absolute;right:0;bottom:3px}
+}
+@media(max-width:405px) and (max-height:690px){
+ #favorite-effects .route-page-heading{padding-bottom:19px;margin-bottom:4px}
+ #favorite-effects .route-page-heading .effects-travel-open{bottom:2px;padding-block:2px}
+}
+
+#hobbies[data-rankings-page] #hobbies-title .profile-title-shin{color:var(--flow-purple)}
+
+/* Private pages 02–04: use the same text rise already used by the production slides. */
+@media(prefers-reduced-motion:no-preference){
+ #profile[data-profile-unified]:not([hidden]) #profile-title{animation:page-text-arrive 480ms cubic-bezier(.2,.75,.25,1) 30ms backwards}
+ #profile[data-profile-unified] .profile-zone-content{--profile-text-reveal-offset:0ms}
+ #profile[data-profile-unified] .profile-strengths p{--profile-body-reveal-offset:40ms}
+ #hobbies[data-rankings-page]:not([hidden]) #hobbies-title{animation:none}
+ #hobbies[data-rankings-page] .p4-layout :is(h2,h3,p,dt,dd,figcaption){animation:page-text-arrive 480ms cubic-bezier(.2,.75,.25,1) calc(var(--p4-rise-offset,0ms) + var(--p4-rise-delay,120ms)) backwards}
+ #hobbies[data-rankings-page].profile-zone-entering .p4-layout{--p4-rise-offset:calc(var(--profile-entrance-duration) * .51)}
+ #hobbies[data-rankings-page] .p4-layout h2{--p4-rise-delay:30ms;--text-reveal-rise:18px}
+ #hobbies[data-rankings-page] .p4-layout h3{--p4-rise-delay:120ms}
+ #hobbies[data-rankings-page] .p4-layout :is(p,figcaption){--p4-rise-delay:220ms}
+}
+
+/* Keep the shared sound control in the same viewport position on every slide. */
+.cabinet > .site-header .sound-toggle{position:fixed;z-index:8;top:16px;right:max(calc((100vw - 1740px)/2 + 52px),calc(12px + clamp(20px,3vw,52px)));inline-size:clamp(91px,7.7vw,116px);block-size:37px;min-height:0;padding:0 7px;font-size:13px}
+#contents .flow-heading{align-items:center}
+@media(max-width:980px){.cabinet > .site-header .sound-toggle{top:12px;right:calc(12px + clamp(20px,3vw,52px));block-size:32px;font-size:11px}}
+@media(max-width:720px){.cabinet > .site-header .sound-toggle{top:8px;right:20px}}
+
+
+/* Place the two contents labels independently in the marked areas. */
+#contents .flow-heading{align-items:baseline}
+@media(min-width:981px){
+ #contents .flow-heading h1{translate:clamp(12px,2.85vw,44px) -19px}
+ #contents .flow-heading .flow-introduction{translate:clamp(-46px,-2.9vw,-16px) -24px}
+}
+@media(min-width:721px) and (max-width:980px){
+ #contents .flow-heading h1{translate:14px -7px}
+ #contents .flow-heading .flow-introduction{translate:-13px -10px}
+}
+@media(min-width:981px){
+ .cabinet>.site-header .sound-toggle{top:29px;right:calc(36px + max(calc((100vw - 1740px)/2 + 52px),calc(12px + clamp(20px,3vw,52px))))}
+}
+@media (min-width:980px) and (max-height:659px){.cabinet>.site-header .sound-toggle{top:21px}}
+@media(max-width:980px){.cabinet>.site-header .sound-toggle{top:16px;right:calc(22px + clamp(20px,3vw,52px)))}}
+@media(max-width:720px){.cabinet>.site-header .sound-toggle{top:12px;right:26px}}
+
+
+@media(min-width:981px) and (min-height:660px){.cabinet>.site-header .sound-toggle{top:44px}}
+
+/* Private slide 03: favorite slot effects and the original travel map. */
+#favorite-effects .p3-hobby-grid{display:grid;grid-template-columns:minmax(0,1.08fr) minmax(0,1fr);align-items:stretch;gap:clamp(9px,1.55vw,24px);min-height:0}
+#favorite-effects .p3-slot-panel{display:grid;grid-template-rows:repeat(2,minmax(0,1fr));gap:clamp(7px,1.1vh,12px);min-width:0}
+#favorite-effects .p3-slot-panel .effects-card{display:grid;grid-template-columns:minmax(0,1.02fr) minmax(0,1fr);grid-template-rows:auto auto minmax(0,1fr);gap:2px clamp(7px,1vw,14px);padding:clamp(7px,.9vw,14px)}
+#favorite-effects .p3-slot-panel :is(.effects-machine,h2){grid-column:1 / -1;min-height:0;margin:0}
+#favorite-effects .p3-slot-panel .effects-media{width:100%;align-self:start}
+#favorite-effects .p3-slot-panel .effects-reason{margin:0;line-height:1.43}
+#favorite-effects .p3-travel-panel{display:grid;align-content:start;min-width:0;gap:8px;padding:clamp(7px,.9vw,14px);background:var(--paper);border:1px solid var(--line);border-top:3px solid #3f805b}
+#favorite-effects .p3-travel-panel .hobby-map-legend{margin-bottom:3px}
+#favorite-effects .p3-travel-panel .hobby-map-frame{height:clamp(200px,42vh,340px)}
+#favorite-effects .p3-travel-panel .p3-travel-copy{border-top:1px solid var(--line);padding-top:7px}
+#favorite-effects .p3-travel-copy h2{margin:0 0 5px;font-size:clamp(16px,1.7vw,26px);line-height:1.28}
+#favorite-effects .p3-travel-copy p{margin:0;font-size:clamp(11px,1.03vw,16px);line-height:1.46}
+@media(max-width:760px){
+ #favorite-effects .route-page-heading{padding-bottom:7px;margin-bottom:7px}
+ #favorite-effects .p3-hobby-grid{grid-template-columns:minmax(0,1fr);gap:6px}
+ #favorite-effects .p3-slot-panel .effects-card{gap:1px 7px;padding:4px 6px;grid-template-columns:minmax(0,.68fr) minmax(0,1.32fr)}
+ #favorite-effects .p3-slot-panel .effects-reason{font-size:11px;line-height:1.33}
+ #favorite-effects .p3-travel-panel{padding:4px 6px;gap:4px}
+ #favorite-effects .p3-travel-panel .hobby-map-frame{height:clamp(106px,21vh,158px)}
+ #favorite-effects .p3-travel-panel .p3-travel-copy{padding-top:4px}
+ #favorite-effects .p3-travel-copy h2{margin-bottom:2px}
+ #favorite-effects .p3-travel-copy p{line-height:1.36}
+}
+@media(max-width:405px) and (max-height:690px){
+ #favorite-effects .p3-travel-panel .hobby-map-frame{height:111px}
+ #favorite-effects .p3-travel-panel .hobby-map-legend{font-size:9px}
+ #favorite-effects .p3-slot-panel .effects-machine{font-size:10px}
+ #favorite-effects .p3-slot-panel .effects-card h2{font-size:14px}
+}
+
+@media(min-width:761px){
+ #favorite-effects .p3-hobby-grid{grid-template-columns:repeat(2,minmax(0,1fr));grid-template-rows:minmax(0,1fr);flex:1}
+ #favorite-effects .p3-slot-panel,#favorite-effects .p3-travel-panel,#favorite-effects .p3-slot-panel .effects-card{min-height:0}
+ #favorite-effects .p3-slot-panel .effects-media{width:min(100%,39vh);margin-inline:0}
+ #favorite-effects .p3-travel-panel{grid-template-rows:repeat(2,minmax(0,1fr));align-content:stretch}
+ #favorite-effects .p3-travel-panel .hobby-map-frame{height:auto;min-height:0}
+ #favorite-effects .p3-travel-panel .p3-travel-copy{padding-top:13px}
+}
+@media(max-width:760px){
+ #favorite-effects .p3-hobby-grid{grid-template-rows:auto auto}
+ #favorite-effects .p3-slot-panel{grid-template-rows:auto auto}
+}
+
+@media(max-width:405px) and (max-height:690px){
+ #favorite-effects .p3-travel-panel{grid-template-columns:minmax(0,.87fr) minmax(0,1.13fr);align-items:center;gap:7px}
+ #favorite-effects .p3-travel-panel .hobby-map-frame{height:auto;aspect-ratio:3/2}
+ #favorite-effects .p3-travel-panel .hobby-map-legend{font-size:8px;gap:1px 4px}
+ #favorite-effects .p3-travel-panel .p3-travel-copy{border-top:0;border-left:1px solid var(--line);padding:0 0 0 7px}
+ #favorite-effects .p3-travel-copy p{font-size:10.5px;line-height:1.28}
+}
+
+#favorite-effects .p3-travel-panel .hobby-map-photo figcaption{font-size:clamp(5px,2.2cqw,11px)}
+#favorite-effects .p3-travel-panel .hobby-map-photo figcaption span{display:none}
+
+/* Private 趣味ZONE: panel headings and unified visited map. */
+#favorite-effects .p3-panel-title{margin:0;font-size:clamp(17px,1.85vw,28px);line-height:1.22;color:var(--ink)}
+#favorite-effects .p3-slot-panel{grid-template-rows:auto repeat(2,minmax(0,1fr))}
+#favorite-effects .p3-map-area{min-width:0;min-height:0;display:grid;grid-template-rows:auto minmax(0,1fr);gap:5px}
+#favorite-effects .p3-travel-panel .hobby-travel{grid-template-rows:minmax(0,1fr)}
+#favorite-effects .p3-travel-panel .hobby-map-frame{height:100%}
+@media(min-width:761px){
+ #favorite-effects .p3-travel-panel{grid-template-rows:minmax(0,1.68fr) minmax(0,1fr)}
+ #favorite-effects .p3-slot-panel .effects-media{width:min(100%,36vh)}
+}
+@media(max-width:760px){
+ #favorite-effects .p3-panel-title{font-size:17px}
+ #favorite-effects .p3-slot-panel{grid-template-rows:auto auto auto;gap:5px}
+ #favorite-effects .p3-map-area{grid-template-rows:auto auto}
+ #favorite-effects .p3-map-area .hobby-map-frame{height:clamp(117px,21vh,169px)}
+}
+@media(max-width:405px) and (max-height:690px){
+ #favorite-effects .p3-map-area .hobby-map-frame{height:auto;aspect-ratio:3/2}
+ #favorite-effects .p3-panel-title{font-size:15px}
+}
+
+@media(min-width:761px){
+ #favorite-effects .p3-travel-panel{grid-template-rows:minmax(0,1fr) auto}
+ #favorite-effects .p3-travel-panel .p3-travel-copy{padding-block:10px 3px}
+}
+
+/* Private 趣味ZONE: aligned panel frames and space for later travel photos. */
+#favorite-effects .route-page-heading h1{font-size:clamp(31px,6.2vh,50px);line-height:1.06;font-weight:900}
+#favorite-effects{padding-top:clamp(3px,.75vh,7px)}
+#favorite-effects .route-page-heading{padding-bottom:7px;margin-bottom:clamp(5px,1vh,9px)}
+#favorite-effects .p3-slot-panel,#favorite-effects .p3-travel-panel{box-sizing:border-box;border:1px solid var(--line);border-top:3px solid #3f805b;background:var(--paper);padding:clamp(6px,.9vw,14px)}
+#favorite-effects :is(.p3-slot-panel,.p3-map-area)>.p3-panel-title{margin:0;padding-bottom:5px;border-bottom:1px solid var(--line);color:var(--ink);font-weight:900;font-size:clamp(17px,1.86vw,29px);line-height:1.15}
+#favorite-effects .p3-slot-panel .effects-card{border-top-width:1px;padding:clamp(4px,.6vw,10px)}
+#favorite-effects .p3-map-area{gap:clamp(4px,1.1vh,9px)}
+@media(min-width:761px){
+ #favorite-effects .p3-map-area .hobby-map-frame{grid-template-columns:minmax(0,1fr) minmax(0,70%) minmax(0,1fr)}
+ #favorite-effects .p3-map-area .hobby-map{grid-column:2}
+}
+@media(max-width:760px){
+ #favorite-effects .route-page-heading h1{font-size:clamp(28px,7.5vw,34px)}
+ #favorite-effects :is(.p3-slot-panel,.p3-map-area)>.p3-panel-title{font-size:17px;padding-bottom:3px}
+ #favorite-effects .p3-slot-panel .effects-card{padding:4px 6px}
+}
+@media(max-width:405px) and (max-height:690px){
+ #favorite-effects :is(.p3-slot-panel,.p3-map-area)>.p3-panel-title{font-size:15px}
+ #favorite-effects .p3-travel-panel .p3-travel-copy{padding-left:6px}
+}
+
+@media(max-width:760px){
+ #favorite-effects .p3-map-area .hobby-map-frame{height:clamp(108px,19.6vh,155px)}
+}
+@media(max-width:405px) and (max-height:690px){
+ #favorite-effects .p3-map-area .hobby-map-frame{height:auto}
+}
+
+@media(min-width:761px){
+ #favorite-effects .p3-slot-panel .effects-card{grid-template-columns:minmax(0,.88fr) minmax(0,1.2fr)}
+ #favorite-effects .p3-slot-panel .effects-reason{line-height:1.36}
+}
+
+#favorite-effects :is(.p3-slot-panel,.p3-map-area)>.p3-panel-title{border-bottom-color:transparent}
+@media(max-width:405px) and (max-height:690px){#favorite-effects .p3-rokkon-break{display:none}}
+
+#favorite-effects .p3-map-area .hobby-map-frame{grid-template-columns:minmax(0,.86fr) minmax(0,2.48fr) minmax(0,.86fr);grid-template-rows:minmax(0,1fr);column-gap:clamp(4px,.7vw,10px);align-items:center}
+#favorite-effects .p3-map-area .hobby-map{grid-column:2;grid-row:1}
+#favorite-effects .p3-photo-seattle{grid-column:1;grid-row:1}
+#favorite-effects .p3-photo-stack{display:grid;align-content:center;gap:6px;min-width:0;grid-column:3;grid-row:1}
+#favorite-effects .p3-trip-photo{width:100%;margin:0;text-align:center;min-width:0}
+#favorite-effects .p3-trip-photo button{display:block;width:100%;padding:0;background:transparent;border:1px solid var(--line);cursor:zoom-in;line-height:0}
+#favorite-effects .p3-trip-photo img{display:block;width:100%;height:auto;max-height:clamp(58px,19vh,151px);object-fit:contain;background:#e7ece4}
+#favorite-effects .p3-photo-seattle img{max-height:none}
+#favorite-effects .p3-trip-photo figcaption{color:var(--ink);margin-top:2px;font-size:clamp(9px,1vw,13px);line-height:1.1;font-weight:700}
+@media(max-width:760px){
+ #favorite-effects .p3-map-area .hobby-map-frame{grid-template-columns:minmax(0,.88fr) minmax(0,1.85fr) minmax(0,.88fr)}
+ #favorite-effects .p3-trip-photo img{max-height:60px}
+ #favorite-effects .p3-photo-stack{gap:3px}
+}
+@media(max-width:405px) and (max-height:690px){
+ #favorite-effects .p3-travel-panel{grid-template-columns:minmax(0,1fr);gap:4px}
+ #favorite-effects .p3-map-area .hobby-map-frame{height:101px;aspect-ratio:auto}
+ #favorite-effects .p3-travel-panel .p3-travel-copy{border-left:0;border-top:1px solid var(--line);padding:3px 0 0}
+ #favorite-effects .p3-trip-photo img{max-height:43px}
+}
+
+@media(max-width:405px) and (max-height:690px){
+ #favorite-effects .p3-slot-panel{padding:4px}
+ #favorite-effects .p3-slot-panel .effects-card{grid-template-columns:minmax(0,.48fr) minmax(0,1.52fr);column-gap:5px;padding:3px 5px}
+ #favorite-effects .p3-slot-panel .effects-reason{line-height:1.25}
+ #favorite-effects .p3-map-area .hobby-map-frame{height:83px}
+ #favorite-effects .p3-trip-photo img{max-height:34px}
+ #favorite-effects .p3-photo-seattle img{max-height:57px}
+}
+
+/* Keep travel photographs layered above the centered map. */
+#favorite-effects .p3-map-area .hobby-map{z-index:0}
+#favorite-effects :is(.p3-photo-seattle,.p3-photo-stack){position:relative;z-index:1}
+#favorite-effects .p3-photo-seattle figcaption small{display:block;font-size:.85em;margin-top:2px}
+#favorite-effects .p3-travel-lead{font-size:1.26em;font-weight:800;line-height:1.16}
+@media(min-width:761px){
+ #favorite-effects .p3-map-area .hobby-map{grid-column:1 / -1;justify-self:center;width:min(70%,61.65vh,calc(100cqh * 1.5))}
+ #favorite-effects .p3-slot-panel .effects-card{grid-template-rows:auto auto auto;align-content:start}
+ #favorite-effects .p3-slot-panel .effects-reason{align-self:center}
+}
+@media(max-width:760px){#favorite-effects .p3-travel-lead{font-size:1.15em}}
+
+@media(min-width:761px){#favorite-effects .p3-slot-panel .effects-media{align-self:center}}
+
+/* Private p03: fuller travel photo thumbnails, original photo in the dialog. */
+#favorite-effects .p3-photo-stack .p3-trip-photo:first-child img{object-fit:fill}
+#favorite-effects .p3-photo-seattle{justify-self:start;width:132%;align-self:center}
+@media(max-width:760px){#favorite-effects .p3-photo-seattle{width:115%}}
+@media(max-width:405px) and (max-height:690px){#favorite-effects .p3-photo-seattle img{object-fit:contain}}
+
+
+#favorite-effects .p3-photo-okinawa{position:absolute;z-index:1;left:16%;top:68%;width:20%;margin:0}
+#favorite-effects .p3-photo-okinawa figcaption{font-size:clamp(8px,2.7cqw,12px)}
+@media(max-width:760px){#favorite-effects .p3-photo-okinawa{left:16%;top:61%;width:22%}}
+
+/* Private p03: crop the map artboard; align two separate photo stacks around it. */
+#favorite-effects .p3-map-area .hobby-map-frame{grid-template-columns:minmax(0,1.30fr) minmax(0,2.80fr) minmax(0,1fr)}
+#favorite-effects .p3-map-area .hobby-map{grid-column:2;grid-row:1;width:min(100%,calc(100cqh * 622 / 482),51.15vh)}
+#favorite-effects .p3-photo-left{grid-column:1;grid-row:1;display:grid;justify-items:center;align-content:center;gap:8px;min-width:0;z-index:1}
+#favorite-effects .p3-photo-left .p3-photo-seattle{width:100%}
+#favorite-effects .p3-photo-left .p3-photo-okinawa{position:static;width:83%;margin:0}
+#favorite-effects .p3-photo-left .p3-photo-okinawa figcaption{font-size:clamp(9px,1vw,13px)}
+#favorite-effects .p3-photo-left .p3-photo-seattle img{max-height:14.5vh;object-fit:contain}
+#favorite-effects .p3-photo-left .p3-photo-okinawa img{max-height:14vh;object-fit:contain}
+@media(max-width:760px){#favorite-effects .p3-map-area .hobby-map-frame{grid-template-columns:minmax(0,1fr) minmax(0,1.86fr) minmax(0,.88fr)}
+#favorite-effects .p3-photo-left{gap:4px}
+#favorite-effects .p3-photo-left .p3-trip-photo img{max-height:53px}}
+@media(max-width:405px) and (max-height:690px){#favorite-effects .p3-photo-left .p3-trip-photo img{max-height:24px}}
+
+
+/* Private p03: remove blank western map margin and give photos the saved width. */
+#favorite-effects .p3-map-area .hobby-map{width:min(100%,calc(100cqh * 514 / 482),40.35vh)}
+#favorite-effects .p3-photo-left .p3-trip-photo{width:min(100%,22.7vh);justify-self:center}
+#favorite-effects .p3-photo-left .p3-trip-photo img{max-height:none;aspect-ratio:4/3}
+#favorite-effects .p3-photo-stack{width:min(100%,24.2vh);justify-self:center}
+@media(min-width:761px){
+ #favorite-effects .p3-map-area .hobby-map-frame{grid-template-columns:minmax(0,1fr) minmax(0,40.35vh) minmax(0,1fr)}
+}
+@media(max-width:760px){
+ #favorite-effects .p3-map-area .hobby-map-frame{grid-template-columns:minmax(0,1fr) minmax(0,1.52fr) minmax(0,1fr)}
+ #favorite-effects .p3-photo-left .p3-trip-photo{width:min(100%,67px)}
+}
+@media(max-width:405px) and (max-height:690px){
+ #favorite-effects .p3-photo-left .p3-trip-photo{width:min(100%,39px)}
+}
+
+#favorite-effects .p3-map-area{position:relative}
+#favorite-effects .p3-map-note{position:absolute;inset:3px 0 auto auto;margin:0;color:#34674e;font-size:clamp(11px,1vw,15px);line-height:1.25;font-weight:700;white-space:nowrap}
+#favorite-effects .p3-map-area .p3-trip-photo figcaption{font-size:clamp(10px,1.13vw,15px)}
+#favorite-effects .p3-photo-seattle figcaption small{font-size:calc(.85 * clamp(9px,1vw,13px))}
+@media(max-width:760px){#favorite-effects .p3-map-note{font-size:8.5px;top:4px}}
+
+
+/* Keep the fixed sound control clear of project headings. */
+@media(min-width:1081px){
+ :is(#ultima,#sushi,#kaiju) .project-heading .production,#other .kowloon-stats{translate:calc(-1 * clamp(142px,32vw - 210px,224px)) 0}
+ #sushi .sushi-order-group{translate:calc(-1 * clamp(100px,57vw - 528px,340px)) 0}
+}
+@media(min-width:981px) and (max-width:1080px){
+ :is(#ultima,#sushi,#kaiju) .project-heading .production,#other .kowloon-stats{translate:-12px 15px}
+ #sushi .sushi-order-group{translate:-15px 0}
+}
+
+/* Private slide 05: stronger header hierarchy and local duration placement. */
+#ultima .project-award .ultima-award-rank{font-size:1.55em;line-height:1;vertical-align:-.06em;letter-spacing:-.035em}
+@media(min-width:721px){
+ #ultima .project-heading h1{font-size:clamp(53px,10.25vh,83px)}
+ #ultima .project-heading .project-identity{margin-block-start:-13px;margin-block-end:-10px}
+ #ultima .project-heading .production{position:relative;inset-inline-end:calc(46% - 40px);translate:0 -13px}
+}
+@media(min-width:1200px){#ultima .project-heading .production{inset-inline-end:calc(64% - 42px);translate:0 -19px}}
+@media(max-width:720px){#ultima .project-award .ultima-award-rank{font-size:1.37em}}
+
+
+/* Private slide 05: let the award read in groups, and match the duration value to the wordmark. */
+#ultima .project-award .ultima-award-rank{margin-inline-start:.28em;margin-inline-end:.18em}
+@media(min-width:721px){
+ #ultima .project-award{padding-inline:.87em}
+ #ultima .project-heading{--ultima-header-value-size:clamp(53px,10.25vh,83px)}
+ #ultima .project-heading h1,#ultima .project-heading .production strong{font-size:var(--ultima-header-value-size)}
+ #ultima .project-heading .production strong{font-weight:800;line-height:.88;white-space:nowrap;letter-spacing:-.02em}
+ #ultima .project-heading .production strong>span{font-size:1em;margin-inline-start:.13em}
+ #ultima .project-heading .production{translate:0 -8px}
+}
+@media(min-width:1200px){#ultima .project-heading .production{inset-inline-end:calc(55% - 9px)}}
+
+
+@media(min-width:721px){
+ #ultima .project-award{--ultima-award-original:clamp(16px,2.35vh,22px);font-size:calc(var(--ultima-award-original) + 1.5px);line-height:calc(var(--ultima-award-original) * 1.35);padding-block:calc(var(--ultima-award-original) * .45)}
+ #ultima .project-award .ultima-award-rank{font-size:calc(var(--ultima-award-original) * 1.55)}
+}
+
+/* Private p05: production remains secondary to the wordmark. */
+@media(min-width:721px){
+ #ultima .project-heading .production strong{font-size:calc(var(--ultima-header-value-size) * .53)}
+ #ultima .project-heading .production strong>span{font-size:.82em}
+ #ultima .project-heading .production{inset-inline-end:calc(46% + 3px)}
+}
+@media(min-width:1200px){#ultima .project-heading .production{inset-inline-end:calc(55% + 36px)}}
+
+
+#ultima .project-heading .ultima-duration-jp{font:800 clamp(17px,3vh,24px)/1.2 var(--font);white-space:nowrap;translate:0 -13px}
+@media(min-width:721px){#ultima .project-heading .ultima-duration-jp{inset-inline-end:calc(46% - 35px)}}
+@media(min-width:1200px){#ultima .project-heading .ultima-duration-jp{inset-inline-end:calc(55% - 2px)}}
+
+#ultima .project-heading .ultima-project-facts{align-items:flex-start;gap:.42em;translate:0 4px}
+
+
+/* Private p05: arabic rank and production aligned to the overview edge. */
+#ultima .project-award .ultima-award-rank{font-size:inherit;line-height:inherit;vertical-align:baseline;letter-spacing:normal;margin-inline-start:.48em;margin-inline-end:.25em}
+#ultima .project-award .ultima-award-digit{font-size:1.83em;line-height:0;vertical-align:baseline;letter-spacing:-.04em}
+@media (min-width:1201px){
+ #ultima .project-heading .ultima-project-facts{inset-inline-end:calc((100% - clamp(24px,3vw,48px)) / 2.18 - clamp(119px,21vh,168px))}
+}
+@media (min-width:721px) and (max-width:1200px){
+ #ultima .project-heading .ultima-project-facts{inset-inline-end:calc((100% - 24px) / 2.1 - clamp(119px,21vh,168px))}
+}
+
+@media(min-width:721px){
+ #ultima .project-heading .ultima-project-facts{inset-inline-end:calc((100% - clamp(24px,3vw,48px)) / 2.18 - clamp(119px,21vh,168px))}
+ #ultima .project-award{padding-block-start:calc(var(--ultima-award-original)*.45 + clamp(3.4375px,82px - 11vh,4.515625px))}
+}
+@media(max-width:720px){#ultima .project-award{padding-block-start:calc(.45em + 1.015625px)}}
+
+@media(min-width:721px){
+ #ultima .project-heading .ultima-project-facts::before{content:"";position:absolute;inset:-8px -14px -8px -8px;border:1px solid color-mix(in srgb,var(--ink) 33%,var(--line));pointer-events:none}
+}
+
+@media(min-width:721px){
+ #ultima .project-heading .ultima-project-facts{color:var(--paper);isolation:isolate}
+ #ultima .project-heading .ultima-project-facts::before{inset:-9px -18px -9px -12px;border:0;background:var(--ink);z-index:-1}
+ #ultima .project-heading .ultima-project-facts b{color:var(--lime);font-weight:900}
+}
+
+@media(min-width:721px){
+ #ultima .project-heading .ultima-project-facts{color:var(--ink);translate:0 calc(4px + clamp(5.5px,1.65vh - 4.4px,9px))}
+ #ultima .project-heading .ultima-project-facts::before{
+  inset-block:calc(-1 * clamp(21px,1.8vh + 13.6px,31px));
+  background:color-mix(in srgb,var(--ink) 7%,var(--paper));
+ }
+ #ultima .project-heading .ultima-project-facts b{color:#365247}
+}
+
+/* Private p05 optional layout: side-by-side facts in the same light card. */
+@media(min-width:961px){
+ #ultima .project-heading .ultima-project-facts{
+  --ultima-facts-gap:clamp(12px,1.5vw,24px);
+  flex-direction:row;align-items:center;gap:var(--ultima-facts-gap);
+  inset-inline-end:calc((100% - clamp(24px,3vw,48px)) / 2.18 - 2 * clamp(119px,21vh,168px) - var(--ultima-facts-gap));
+ }
+ #ultima .project-heading .ultima-project-facts::before{inset-block:calc(-1 * (clamp(21px,1.8vh + 13.6px,31px) + .81em))}
+}
+
+@media(min-width:721px){
+ #ultima .project-heading .ultima-project-facts::before{background:#e9e3d8}
+ #ultima .project-heading .ultima-project-facts b{color:inherit}
+}
+
+/* Private 07/09: the same linen project facts as ULTIMADARTS. */
+:is(#sushi,#kaiju) .project-heading{position:relative}
+:is(#sushi,#kaiju) .project-facts-brief{display:flex;flex-direction:column;justify-content:center;align-items:flex-start;gap:.42em;background:#e9e3d8;color:var(--ink);font:800 clamp(16px,2.8vh,22px)/1.2 var(--font);white-space:nowrap;padding:.45em .74em}
+:is(#sushi,#kaiju) .project-facts-brief b{font-weight:900;color:inherit}
+@media(min-width:721px){
+ :is(#sushi,#kaiju) .project-heading{min-height:clamp(85px,13.73vh,114px)}
+ :is(#sushi,#kaiju) .project-facts-brief{position:absolute;top:50%;translate:0 -50%;min-height:85%;z-index:1}
+ #sushi .sushi-heading-stats{padding-inline-end:calc(clamp(67px,11.5vh,101px) + clamp(12px,2.5vw,44px))}
+ #sushi .project-facts-brief{right:0}
+ #kaiju .project-facts-brief{left:calc((100% - clamp(24px,3vw,48px)) * 1.18 / 2.18 + clamp(24px,3vw,48px))}
+}
+@media(min-width:1201px){
+ :is(#sushi,#kaiju) .project-facts-brief{flex-direction:row;justify-content:flex-start;align-items:center;gap:clamp(13px,1.25vw,21px)}
+ #sushi .project-facts-brief{left:auto;right:clamp(0px,10vw - 90px,160px)}
+}
+@media(min-width:1350px){
+ #sushi .project-facts-brief{right:clamp(60px,12.3vw - 110px,150px)}
+}
+@media(max-width:720px){
+ #sushi .project-facts-brief{font-size:clamp(11px,3.5vw,14px);gap:4px;margin-top:-7px}
+ #kaiju .project-facts-brief{display:none}
+}
+
+@media(min-width:721px){
+ #sushi .project-facts-brief{top:calc(50% + 6px)}
+}
+@media(min-width:721px) and (max-width:1349px){
+ #sushi .project-facts-brief{right:0;flex-direction:column;justify-content:center;align-items:flex-start;gap:.42em;font-size:16px;padding-inline:9px}
+}
+@media(min-width:721px) and (max-width:980px){
+ #sushi .project-facts-brief{font-size:14px}
+}
+
+@media(min-width:1350px){#sushi .project-facts-brief{right:clamp(12px,23vw - 282px,92px)}}
+@media(min-width:721px) and (max-width:980px){
+ #sushi .project-facts-brief{font-size:13px}
+ #kaiju .project-facts-brief{left:auto;right:0;font-size:14px;padding-inline:9px}
+}
+
+/* Private preview: retire decorative cabinet trim without changing geometry. */
+.cabinet::before{display:none}
+/* Private 09: title, game-development note and a fuller 16:9 framing. */
+#kaiju .kaiju-dev-label{font-weight:750;letter-spacing:.005em}
+#kaiju .project-reading{display:flex;align-items:baseline;flex-wrap:wrap;gap:.1em .85em}
+@media(min-width:981px){
+ #kaiju .kaiju-title-row{display:grid;grid-template-columns:auto auto;grid-template-rows:auto auto;column-gap:clamp(20px,2.65vw,42px);row-gap:2px;align-items:end}
+ #kaiju .kaiju-title-row .project-identity{display:contents}
+ #kaiju .kaiju-title-row #kaiju-title{grid-column:1;grid-row:1}
+ #kaiju .kaiju-title-row .project-reading{grid-area:2 / 1 / 3 / 3;margin-block:0}
+ #kaiju .kaiju-interaction{grid-column:2;grid-row:1;align-self:end}
+ #kaiju .kaiju-title-row #kaiju-title{font-size:clamp(45px,8.5vh,62px);line-height:1.04}
+
+}
+@media(min-width:1080px){#kaiju .kaiju-title-row #kaiju-title{font-size:clamp(53px,10.25vh,83px)}}
+@media(max-width:720px){#kaiju .kaiju-title-row #kaiju-title{font-size:clamp(30px,8vw,45px)} #kaiju .kaiju-dev-label{font-size:.92em}}
+
+
+/* Shared private reference position for the project-facts cards; the sushi game stays at right. */
+@media(min-width:1080px){
+ #kaiju .project-facts-brief{top:calc(1.8vh + .15px);translate:none}
+}
+@media(min-width:1200px){
+ #sushi .project-heading h1{font-size:clamp(38px,min(7.6vh,3.47vw),60px)}
+ #sushi .sushi-heading-stats{display:contents}
+ #sushi .project-facts-brief{
+  top:calc(1.8vh + .15px);left:calc((100% - clamp(24px,3vw,48px)) * 1.18 / 2.18 + clamp(24px,3vw,48px));right:auto;translate:none;
+ }
+ #sushi .sushi-order-group{position:absolute;left:auto;right:0;top:clamp(39px,5.9vh,49px);translate:none}
+}
+@media(min-width:1350px){
+ #sushi .project-facts-brief{flex-direction:row;align-items:center}
+}
+
+
+@media(min-width:1200px){
+ #sushi .project-award{font-size:min(clamp(16px,2.35vh,22px),1.38vw)}
+ :is(#sushi,#kaiju) .project-facts-brief{left:calc((100% - clamp(24px,3vw,48px)) * 1.18 / 2.18 + clamp(24px,3vw,48px) - 12px);padding-inline-start:12px}
+}
+
+@media(min-width:721px) and (max-width:980px){
+ #kaiju .project-reading{display:block}
+ #kaiju .kaiju-dev-label{display:block}
+}
+
+@media(min-width:721px) and (max-width:980px){
+ #kaiju .project-reading{position:relative}
+ #kaiju .kaiju-dev-label{position:absolute;top:100%;left:0;white-space:nowrap}
+}
+
+
+/* Local review: p09, p12 and p13 corrections. */
+#kaiju .project-reading .kaiju-dev-label { position:static; white-space:normal; }
+#other .kowloon-stats.kowloon-stats-summary {
+  display:flex; flex-wrap:wrap; align-items:center;
+  gap:.45em 1.1em; width:max-content; max-width:100%;
+  margin:0; translate:none;
+  padding:clamp(9px,1.35vh,14px) clamp(11px,1.25vw,23px);
+  font-weight:800;
+  font-size:clamp(14px,2.2vh,21px);
+}
+#other .kowloon-stats-summary strong {
+  color:var(--chapter-color);
+  font-size:1em;
+  font-family:inherit;
+  font-weight:850;
+}
+@media(min-width:981px){
+  #other .kowloon-heading {
+    display:grid;
+    grid-template-columns:minmax(0,1.4fr) minmax(0,1fr);
+    column-gap:clamp(16px,2.4vw,42px);
+  }
+  #other .kowloon-stats.kowloon-stats-summary {
+    justify-self:start;
+    margin-inline-start:calc(clamp(14px,2vw,34px) + 1px);
+  }
+}
+#other-works .crescent-stage-group { min-width:0; }
+#other-works .crescent-stage-hint {
+  text-align:center; margin:0 0 4px;
+  line-height:1.1; font-weight:800;
+  font-size:clamp(13px,1.8vh,17px); color:#443556;
+}
+#other-works .crescent-method {
+  margin:.35em 0 0;
+  font-size:clamp(12px,1.65vh,16px);
+  line-height:1.32;
+}
+@media(max-width:460px){
+  #other-works .crescent-stage-group { grid-row:1; }
+}
+
+/* Local review: slightly strengthen the character introduction and align the invitation toward the character. */
+#other-works .crescent-copy #character-web-title { font-size:clamp(19px,2.8vh,27px); line-height:1.24; }
+#other-works .crescent-copy .crescent-name { font-size:clamp(16px,2.3vh,22px); line-height:1.25; }
+#other-works .crescent-copy .crescent-method { font-size:clamp(14px,1.92vh,18px); line-height:1.42; }
+#other-works .crescent-copy .crescent-stage-hint {
+  text-align:left; margin:.55em 0 .4em; font-size:clamp(15px,2.15vh,20px); line-height:1.22;
+}
+#other-works .crescent-hint-arrow { display:inline-block; padding-inline-start:.2em; }
+@media(max-width:460px){
+  #other-works .crescent-hint-arrow { transform:rotate(-90deg); }
+}
+#other .kowloon-stats-summary > span { white-space:nowrap; }
+
+
+/* Local review: use a single main-heading scale on profile and on the proposal index. */
+#profile[data-profile-unified] #profile-title,
+#documents #documents-title { font-size:clamp(31px,min(6.8vh,6.8vw),66px); line-height:1.1; }
+#profile[data-profile-unified] #profile-title {
+  display:flex; align-items:center; gap:.17em; white-space:nowrap;
+}
+#profile #profile-title .profile-chance-art {
+  display:block; flex:0 1 auto;
+  height:.92em; width:auto; max-width:44vw; overflow:visible;
+  transform:translateY(.064em) scaleY(1.2); transform-origin:center;
+}
+
+
+/* Keep the award accent, but match the SUSHI award lettering rather than oversizing one numeral. */
+#ultima .project-award .ultima-award-rank { font-size:clamp(16px,2.35vh,22px); }
+#ultima .project-award .ultima-award-digit {
+  font-size:inherit; line-height:inherit; vertical-align:baseline; letter-spacing:normal;
+}
+@media(min-width:1200px){
+  #ultima .project-award .ultima-award-rank { font-size:min(clamp(16px,2.35vh,22px),1.38vw); }
+}
+@media(max-width:720px){
+  #ultima .project-award .ultima-award-rank { font-size:clamp(12px,3.1vw,17px); }
+}
+
+
+/* Local review: reserve the full illustrated board height before the stacked ratings on narrow screens. */
+@media(max-width:820px){
+  #contents.flow-screen:not([hidden]) {
+    display:flex;
+    flex-direction:column;
+    align-items:stretch;
+  }
+  #contents .flow-heading,
+  #contents .flow-stage,
+  #contents .flow-reviews { flex:0 0 auto; }
+  #contents .flow-stage {
+    width:100%;
+    aspect-ratio:900 / 1550;
+  }
+  #contents .flow-reviews { width:100%; }
+}
+
+
+/* Local review: only the approved labels and their spacing. */
+#favorite-effects [data-effect-copy="kabaneri"] { line-height:1.45; }
+@media(max-width:760px){
+  #favorite-effects .p3-map-note { font-size:9px; }
+}
+#sushi .sushi-uni-counter { gap:.18em; }
+#sushi .sushi-uni-counter .sushi-counter-unit {
+  margin-inline-start:.12em;
+  font:800 .56em/1 var(--font);
+}
+#other-works .crescent-copy .crescent-method { line-height:1.45; }
+
+
+@media(max-width:760px){
+  #favorite-effects .p3-slot-panel .effects-card:has([data-effect-copy="kabaneri"]) {
+    grid-template-rows:auto auto auto;
+  }
+}
+@media(max-width:405px){
+  #sushi .sushi-heading-stats { gap:9px; }
+  #sushi .sushi-uni-counter { font-size:clamp(13px,4.05vw,16px); padding-inline:8px; }
+  #sushi .sushi-uni-counter strong { font-size:clamp(25px,7.1vw,30px); }
+}

@@ -1,5 +1,5 @@
-const screens = ['contents', 'intro-profile', 'profile', 'hobbies', 'ultima', 'ultima-design', 'sushi', 'sushi-design', 'kaiju', 'kaiju-design', 'documents', 'other', 'other-works'];
-const screenLabels = ['目次', 'アピールZONE', '真・アピールZONE', '趣味MODE', 'ウルティマダーツ 01', '演出と制作判断', '最後の晩餐はSUSHIがいいニャ', '演出と制作判断', '破壊王', '破壊王の演出と制作判断', 'ゲーム企画書', 'その他制作', 'その他の制作物'];
+const screens = ['contents', 'profile', 'favorite-effects', 'hobbies', 'ultima', 'ultima-design', 'sushi', 'sushi-design', 'kaiju', 'kaiju-design', 'documents', 'other', 'other-works'];
+const screenLabels = ['目次', '自己紹介CHANCE', '趣味ZONE', '裏・特技紹介', 'ウルティマダーツ 01', '演出と制作判断', '最後の晩餐はSUSHIがいいニャ', '演出と制作判断', '破壊王', '破壊王の演出と制作判断', 'ゲーム企画書', 'その他制作', 'その他の制作物'];
 const firstTextRevealPage = screens.indexOf('ultima-design');
 for (const id of screens.slice(firstTextRevealPage)) {
   document.getElementById(id).classList.add('reveal-page-text');
@@ -15,10 +15,10 @@ const portfolioSong = document.querySelector('#pale-blue-rain');
 const brand = document.querySelector('.brand');
 const brandName = brand.querySelector('.brand-name');
 const brandSection = brand.querySelector('.brand-section');
-const profileScreen = document.querySelector('#profile');
+const profileScreen = document.querySelector('#hobbies');
 const profileShin = profileScreen.querySelector('.profile-title-shin');
 const profileTitleLabel = profileScreen.querySelector('.profile-title-label');
-const profileContent = profileScreen.querySelector('.profile-zone-content');
+const profileContent = profileScreen.querySelector('.p4-layout');
 const portfolioSections = {
   profile: 'CZ',
   games: '制作作品',
@@ -29,11 +29,11 @@ const portfolioSections = {
 function showScreen(name, focus = true) {
   const next = screens.indexOf(name);
   if (next < 0) return;
-  const enteringProfile = name === 'profile' && current !== next;
+  const enteringProfile = name === 'hobbies' && current !== next;
   const enteringDocuments = name === 'documents' && current !== next;
   const screen = document.getElementById(name);
   clearPlayEffects();
-  if (name !== 'profile') profileScreen.classList.remove('profile-zone-entering');
+  if (name !== 'hobbies') profileScreen.classList.remove('profile-zone-entering');
   if (screens[current] === 'other-works' && name !== 'other-works') portfolioSong.pause();
   if (screens[current] === 'kaiju' && name !== 'kaiju') {
     gameplayVideo.pause();
@@ -100,7 +100,8 @@ brand.addEventListener('click', e => {e.preventDefault(); showScreen('contents')
 document.querySelector('#prev-page').addEventListener('click', () => showScreen(screens[current - 1]));
 document.querySelector('#next-page').addEventListener('click', () => showScreen(screens[current + 1]));
 function showPageFromHash(focus) {
-  const name = location.hash.slice(1);
+  const requested = location.hash.slice(1);
+  const name = requested === "intro-profile" ? "profile" : requested;
   const validPage = screens.includes(name);
   showScreen(validPage ? name : screens[0], focus && validPage);
 }
